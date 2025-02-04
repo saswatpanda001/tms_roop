@@ -25,7 +25,8 @@
           <a href="{% url 'main:dashboard' %}" class="text-gray-700 hover:text-blue-600 font-medium">Dashboard</a>
           <a href="{% url 'main:emp_profile' pk=user.id %}" class="text-gray-700 hover:text-blue-600 font-medium">Profile</a>
           <a href="{% url 'main:emp_list' %}" class="text-gray-700 hover:text-blue-600 font-medium">EmployeeList</a>
-          
+          <a href="{% url 'main:emp_edit' pk=user.id %}" class="text-gray-700 hover:text-blue-600 font-medium">EmployeeEdit</a>
+          <a href="{% url 'main:emp_details' pk=user.id %}" class="text-gray-700 hover:text-blue-600 font-medium">EmployeeDetails</a>
           <a href="{% url 'main:emp_skillgap' pk=user.id %}" class="text-gray-700 hover:text-blue-600 font-medium">Skillgap</a>
           <a href="{% url 'main:emp_training' pk=user.id %}" class="text-gray-700 hover:text-blue-600 font-medium">Trainings</a>
           {% endif %}
