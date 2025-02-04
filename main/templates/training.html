@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+  <!-- Training Programs Section -->
+  <section class="py-10">
+    <div class="container mx-auto px-6">
+
+      <!-- Page Header -->
+      <div class="mb-8">
+        <h1 class="text-3xl font-semibold text-gray-800">Available Training Programs</h1>
+        <p class="text-gray-600">Explore various training programs to enhance your skills and advance in your career.</p>
+      </div>
+
+      <!-- Search Section -->
+      <div class="flex justify-between items-center mb-8">
+        <div class="relative">
+          <input type="text" id="search" class="w-64 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Search by program name...">
+          <button class="absolute right-2 top-2 text-blue-600">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 17l-2-2m0 0l-2 2m2-2V7m4 10l2-2m0 0l2 2m-2-2V7" />
+            </svg>
+          </button>
+        </div>
+        <div>
+          <button class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition duration-300">Filter Programs</button>
+        </div>
+      </div>
+
+      <!-- Training Programs List -->
+      <div class="bg-white shadow-lg rounded-lg p-6">
+        <h3 class="text-xl font-medium text-gray-700 mb-4">List of Available Programs</h3>
+
+        <!-- Program 1 -->
+        <div class="flex items-center justify-between border-b pb-4 mb-4">
+          <div class="flex items-center">
+            <img src="https://www.w3schools.com/w3images/avatar2.png" alt="Training Image" class="w-16 h-16 rounded-full border-2 border-blue-500 mr-6">
+            <div>
+              <p class="text-lg font-semibold text-gray-800">Advanced Python Programming</p>
+              <p class="text-sm text-gray-500">Learn advanced techniques and best practices in Python programming.</p>
+            </div>
+          </div>
+          <div class="text-right">
+            <p class="text-sm text-gray-500">Duration: 4 Weeks</p>
+            <p class="text-sm text-gray-500">Level: Advanced</p>
+            <button class="bg-blue-600 text-white px-4 py-2 mt-2 rounded-md hover:bg-blue-700 transition duration-300">Enroll Now</button>
+          </div>
+        </div>
+
+        <!-- Program 2 -->
+        <div class="flex items-center justify-between border-b pb-4 mb-4">
+          <div class="flex items-center">
+            <img src="https://www.w3schools.com/w3images/avatar2.png" alt="Training Image" class="w-16 h-16 rounded-full border-2 border-blue-500 mr-6">
+            <div>
+              <p class="text-lg font-semibold text-gray-800">Project Management Essentials</p>
+              <p class="text-sm text-gray-500">Gain essential skills for managing projects effectively in any industry.</p>
+            </div>
+          </div>
+          <div class="text-right">
+            <p class="text-sm text-gray-500">Duration: 6 Weeks</p>
+            <p class="text-sm text-gray-500">Level: Beginner</p>
+            <button class="bg-blue-600 text-white px-4 py-2 mt-2 rounded-md hover:bg-blue-700 transition duration-300">Enroll Now</button>
+          </div>
+        </div>
+
+        <!-- Program 3 -->
+        <div class="flex items-center justify-between border-b pb-4 mb-4">
+          <div class="flex items-center">
+            <img src="https://www.w3schools.com/w3images/avatar2.png" alt="Training Image" class="w-16 h-16 rounded-full border-2 border-blue-500 mr-6">
+            <div>
+              <p class="text-lg font-semibold text-gray-800">Data Science & Machine Learning</p>
+              <p class="text-sm text-gray-500">Learn the foundations of data science and machine learning algorithms.</p>
+            </div>
+          </div>
+          <div class="text-right">
+            <p class="text-sm text-gray-500">Duration: 8 Weeks</p>
+            <p class="text-sm text-gray-500">Level: Intermediate</p>
+            <button class="bg-blue-600 text-white px-4 py-2 mt-2 rounded-md hover:bg-blue-700 transition duration-300">Enroll Now</button>
+          </div>
+        </div>
+
+        <!-- Program 4 -->
+        <div class="flex items-center justify-between border-b pb-4 mb-4">
+          <div class="flex items-center">
+            <img src="https://www.w3schools.com/w3images/avatar2.png" alt="Training Image" class="w-16 h-16 rounded-full border-2 border-blue-500 mr-6">
+            <div>
+              <p class="text-lg font-semibold text-gray-800">Leadership & Communication Skills</p>
+              <p class="text-sm text-gray-500">Develop leadership and effective communication strategies for success in management.</p>
+            </div>
+          </div>
+          <div class="text-right">
+            <p class="text-sm text-gray-500">Duration: 5 Weeks</p>
+            <p class="text-sm text-gray-500">Level: Advanced</p>
+            <button class="bg-blue-600 text-white px-4 py-2 mt-2 rounded-md hover:bg-blue-700 transition duration-300">Enroll Now</button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+{% endblock %}

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+  <!-- Header -->
+  <header class="bg-white shadow">
+    <div class="container mx-auto px-6 py-4">
+      <h1 class="text-2xl font-semibold text-gray-800">Feedback Form</h1>
+      <p class="text-gray-600">We value your feedback! Let us know how we can improve the system, your experience, or the work environment.</p>
+    </div>
+  </header>
+
+  <!-- Feedback Form Section -->
+  <section class="container mx-auto px-6 py-8">
+    <div class="bg-white shadow-lg rounded-lg p-8">
+      <h2 class="text-lg font-semibold text-gray-800">Submit Your Feedback</h2>
+      <p class="text-gray-600 text-sm">Your input helps us grow and create a better experience for everyone.</p>
+
+      <!-- Form -->
+      <form action="#" method="POST" class="mt-6 space-y-6">
+        <!-- Name -->
+        <div>
+          <label for="name" class="block text-sm font-medium text-gray-700">Your Name</label>
+          <input 
+            type="text" 
+            id="name" 
+            name="name" 
+            placeholder="Enter your name" 
+            class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+          />
+        </div>
+
+        <!-- Email -->
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            placeholder="Enter your email" 
+            class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+          />
+        </div>
+
+        <!-- Feedback Category -->
+        <div>
+          <label for="category" class="block text-sm font-medium text-gray-700">Feedback Category</label>
+          <select 
+            id="category" 
+            name="category" 
+            class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+          >
+            <option value="" disabled selected>Select a category</option>
+            <option value="system">System Feedback</option>
+            <option value="experience">Work Experience</option>
+            <option value="environment">Work Environment</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <!-- Feedback Message -->
+        <div>
+          <label for="message" class="block text-sm font-medium text-gray-700">Your Feedback</label>
+          <textarea 
+            id="message" 
+            name="message" 
+            rows="6" 
+            placeholder="Write your feedback here..." 
+            class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+          ></textarea>
+        </div>
+
+        <!-- Rating Section -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Rate Your Experience</label>
+          <div class="flex space-x-4 mt-2">
+            <label class="flex items-center space-x-2">
+              <input type="radio" name="rating" value="1" class="text-blue-500 focus:ring-blue-500">
+              <span>1 - Poor</span>
+            </label>
+            <label class="flex items-center space-x-2">
+              <input type="radio" name="rating" value="2" class="text-blue-500 focus:ring-blue-500">
+              <span>2 - Fair</span>
+            </label>
+            <label class="flex items-center space-x-2">
+              <input type="radio" name="rating" value="3" class="text-blue-500 focus:ring-blue-500">
+              <span>3 - Good</span>
+            </label>
+            <label class="flex items-center space-x-2">
+              <input type="radio" name="rating" value="4" class="text-blue-500 focus:ring-blue-500">
+              <span>4 - Very Good</span>
+            </label>
+            <label class="flex items-center space-x-2">
+              <input type="radio" name="rating" value="5" class="text-blue-500 focus:ring-blue-500">
+              <span>5 - Excellent</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="flex items-center justify-end">
+          <button 
+            type="submit" 
+            class="bg-blue-600 text-white font-semibold py-2 px-6 rounded-md shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            Submit Feedback
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+</body>
+</html>

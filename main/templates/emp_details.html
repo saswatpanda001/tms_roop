@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+  <!-- Employee Detail Section -->
+  <section class="py-10">
+    <div class="container mx-auto px-6">
+
+      <!-- Employee Info Header -->
+      <div class="flex items-center space-x-6 mb-8">
+        <img src="https://www.w3schools.com/w3images/avatar2.png" alt="Employee Image" class="w-24 h-24 rounded-full border-4 border-blue-500">
+        <div>
+          <h1 class="text-3xl font-semibold text-gray-800">Roop Randhawa</h1>
+          <p class="text-xl text-gray-600">Software Engineer</p>
+          <p class="text-gray-500">Email: johndoe@example.com</p>
+          <p class="text-gray-500">Department: IT</p>
+          <p class="text-gray-500">Joined: January 2021</p>
+        </div>
+      </div>
+
+      <!-- Performance History Section -->
+      <div class="bg-white shadow-lg rounded-lg p-8 mb-8">
+        <h3 class="text-xl font-semibold text-gray-800 mb-4">Performance History</h3>
+        <div class="overflow-x-auto">
+          <table class="min-w-full table-auto">
+            <thead>
+              <tr>
+                <th class="px-6 py-3 text-left text-sm font-medium text-gray-600">Year</th>
+                <th class="px-6 py-3 text-left text-sm font-medium text-gray-600">Rating</th>
+                <th class="px-6 py-3 text-left text-sm font-medium text-gray-600">Remarks</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-t border-gray-200">
+                <td class="px-6 py-3 text-gray-800">2023</td>
+                <td class="px-6 py-3 text-gray-800">Excellent</td>
+                <td class="px-6 py-3 text-gray-500">Exceeded project goals and expectations</td>
+              </tr>
+              <tr class="border-t border-gray-200">
+                <td class="px-6 py-3 text-gray-800">2022</td>
+                <td class="px-6 py-3 text-gray-800">Good</td>
+                <td class="px-6 py-3 text-gray-500">Delivered on time, good teamwork</td>
+              </tr>
+              <tr class="border-t border-gray-200">
+                <td class="px-6 py-3 text-gray-800">2021</td>
+                <td class="px-6 py-3 text-gray-800">Satisfactory</td>
+                <td class="px-6 py-3 text-gray-500">Met basic expectations</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Skills Section -->
+      <div class="bg-white shadow-lg rounded-lg p-8 mb-8">
+        <h3 class="text-xl font-semibold text-gray-800 mb-4">Skills</h3>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 text-gray-800">
+          <div class="bg-blue-50 text-blue-600 px-4 py-2 rounded-full">JavaScript (Advanced)</div>
+          <div class="bg-green-50 text-green-600 px-4 py-2 rounded-full">React.js (Advanced)</div>
+          <div class="bg-yellow-50 text-yellow-600 px-4 py-2 rounded-full">Node.js (Intermediate)</div>
+          <div class="bg-gray-50 text-gray-600 px-4 py-2 rounded-full">SQL (Intermediate)</div>
+          <div class="bg-purple-50 text-purple-600 px-4 py-2 rounded-full">Python (Basic)</div>
+          <div class="bg-indigo-50 text-indigo-600 px-4 py-2 rounded-full">TypeScript (Basic)</div>
+        </div>
+      </div>
+
+      <!-- Certifications Section -->
+      <div class="bg-white shadow-lg rounded-lg p-8 mb-8">
+        <h3 class="text-xl font-semibold text-gray-800 mb-4">Certifications</h3>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 text-gray-800">
+          <div class="bg-green-100 text-green-700 px-4 py-2 rounded-lg">Certified JavaScript Developer</div>
+          <div class="bg-blue-100 text-blue-700 px-4 py-2 rounded-lg">React.js Developer Certification</div>
+          <div class="bg-yellow-100 text-yellow-700 px-4 py-2 rounded-lg">Node.js Intermediate Certification</div>
+        </div>
+      </div>
+
+      <!-- Update Profile Button -->
+      <div class="flex justify-end">
+        <button class="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition duration-300 ease-in-out">Update Profile</button>
+      </div>
+
+    </div>
+  </section>
+
+{% endblock %}

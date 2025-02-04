@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Post Area</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+  <!-- Header -->
+  <header class="bg-white shadow">
+    <div class="container mx-auto px-6 py-4">
+      <h1 class="text-2xl font-semibold text-gray-800">Employee Post Area</h1>
+      <p class="text-gray-600">Share blogs, thoughts, or ideas with your colleagues. Engage through likes and comments!</p>
+    </div>
+  </header>
+
+  <!-- Post Creation Section -->
+  <section class="container mx-auto px-6 py-8">
+    <div class="bg-white shadow-lg rounded-lg p-6">
+      <h2 class="text-lg font-semibold text-gray-800">Create a Post</h2>
+      <p class="text-gray-600 text-sm">Share your ideas, experiences, or thoughts with everyone.</p>
+      <form class="mt-4 space-y-4">
+        <div>
+          <textarea 
+            id="postContent" 
+            name="postContent" 
+            rows="4" 
+            placeholder="Write something here..." 
+            class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+          ></textarea>
+        </div>
+        <div class="flex items-center justify-between">
+          <button 
+            type="submit" 
+            class="bg-blue-600 text-white font-semibold py-2 px-4 rounded-md shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            Post
+          </button>
+          <p class="text-gray-500 text-sm">Make it thoughtful and concise!</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Posts Feed Section -->
+  <section class="container mx-auto px-6 py-8">
+    <h2 class="text-lg font-semibold text-gray-800 mb-4">Recent Posts</h2>
+
+    <!-- Example Post -->
+    <div class="bg-white shadow-lg rounded-lg p-6 mb-6">
+      <!-- Post Header -->
+      <div class="flex items-center space-x-4">
+        <img src="https://via.placeholder.com/50" alt="Profile Picture" class="w-12 h-12 rounded-full">
+        <div>
+          <h3 class="text-sm font-semibold text-gray-800">John Doe</h3>
+          <p class="text-xs text-gray-500">Posted on Jan 24, 2025</p>
+        </div>
+      </div>
+
+      <!-- Post Content -->
+      <div class="mt-4 text-gray-700">
+        <p>
+          Excited to share that I've completed a new training program on leadership and management. 
+          The journey has been rewarding and insightful!
+        </p>
+      </div>
+
+      <!-- Post Engagement -->
+      <div class="mt-6 flex items-center justify-between border-t pt-4">
+        <div class="flex items-center space-x-4">
+          <!-- Like Button -->
+          <button 
+            class="flex items-center space-x-2 text-blue-600 hover:text-blue-800 focus:outline-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 9l-3 3m0 0l-3-3m3 3V4m-3 5H5a2 2 0 00-2 2v11a2 2 0 002 2h14a2 2 0 002-2v-7a2 2 0 00-2-2h-5z" />
+            </svg>
+            <span>Like</span>
+          </button>
+
+          <!-- Comment Button -->
+          <button 
+            class="flex items-center space-x-2 text-blue-600 hover:text-blue-800 focus:outline-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M21 16.78V8.22a2 2 0 00-2-2H5a2 2 0 00-2 2v8.56c0 1.28 1.534 1.927 2.446 1.015l1.868-1.868a2 2 0 012.829 0l2.869 2.869a2 2 0 002.829 0l1.868-1.868A2 2 0 0021 16.78z" />
+            </svg>
+            <span>Comment</span>
+          </button>
+        </div>
+        <p class="text-sm text-gray-500">12 Likes | 5 Comments</p>
+      </div>
+    </div>
+
+    <!-- Add more posts dynamically -->
+
+  </section>
+
+</body>
+</html>
