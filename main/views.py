@@ -53,4 +53,9 @@ def emp_training(request,pk):
     return render(request, 'training.html')
 
 
+@login_required
+def feedback(request):
+    return render(request, 'feedback.html')
+
+
 

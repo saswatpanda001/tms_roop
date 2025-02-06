@@ -1,20 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Feedback Page</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100">
-
-  <!-- Header -->
-  <header class="bg-white shadow">
-    <div class="container mx-auto px-6 py-4">
-      <h1 class="text-2xl font-semibold text-gray-800">Feedback Form</h1>
-      <p class="text-gray-600">We value your feedback! Let us know how we can improve the system, your experience, or the work environment.</p>
-    </div>
-  </header>
+{% extends 'base.html' %}
+{% block content %}
 
   <!-- Feedback Form Section -->
   <section class="container mx-auto px-6 py-8">
@@ -114,6 +99,4 @@
       </form>
     </div>
   </section>
-
-</body>
-</html>
+{% endblock %}
