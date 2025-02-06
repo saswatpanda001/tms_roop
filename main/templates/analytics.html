@@ -1,20 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Analytics Dashboard</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100">
 
-  <!-- Dashboard Header -->
-  <header class="bg-white shadow">
-    <div class="container mx-auto px-6 py-4">
-      <h1 class="text-2xl font-semibold text-gray-800">Analytics Dashboard</h1>
-      <p class="text-gray-600">Insights into organizational performance and key metrics</p>
-    </div>
-  </header>
+{% extends 'base.html' %}
+
+{% block content %}
 
   <!-- Dashboard Content -->
   <section class="container mx-auto px-6 py-8">
@@ -137,5 +124,4 @@
 
   </section>
 
-</body>
-</html>
+{% endblock %}

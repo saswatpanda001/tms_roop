@@ -15,6 +15,12 @@ urlpatterns = [
     path('emp/trainings/<int:pk>', views.emp_training, name="emp_training"),
     path('feedback', views.feedback, name="feedback"),
 
+    path('emp/analytics', views.analytics, name="analytics"),
+    path('posts', views.post, name="posts"),
+    path('emp/succession', views.succession, name="succession"),
+    path('emp/promotion', views.promotion, name="promotion"),
+    path('emp/reports', views.reports, name="reports"),
+
 ]
 
 

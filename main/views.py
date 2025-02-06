@@ -58,4 +58,30 @@ def feedback(request):
     return render(request, 'feedback.html')
 
 
+@login_required
+def analytics(request):
+    return render(request, 'analytics.html')
+
+
+
+@login_required
+def post(request):
+    return render(request, 'post.html')
+
+
+@login_required
+def succession(request):
+    return render(request, 'succession.html')
+
+
+
+@login_required
+def promotion(request):
+    return render(request, 'promotion.html')
+
+@login_required
+def reports(request):
+    return render(request, 'reports.html')
+
+
 
