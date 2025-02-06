@@ -44,8 +44,9 @@
         <!-- Profile Section -->
         <div class="ml-4 relative">
           <button class="flex items-center text-gray-600 hover:text-blue-600 focus:outline-none">
-        
+          <a href="{% url 'main:emp_profile' pk=user.id %}">
             <span class="ml-2 hidden md:block font-medium">{{user.username}}</span>
+          </a>
           </button>
         </div>
         <!-- Hamburger Menu -->
@@ -72,10 +73,25 @@
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="hidden md:hidden">
       <div class="px-2 pt-2 pb-3 space-y-1">
-        <a href="/" class="block px-3 py-2 text-gray-700 hover:bg-gray-100">Dashboard</a>
-        <a href="/talents" class="block px-3 py-2 text-gray-700 hover:bg-gray-100">Talents</a>
-        <a href="/jobs" class="block px-3 py-2 text-gray-700 hover:bg-gray-100">Jobs</a>
-        <a href="/analytics" class="block px-3 py-2 text-gray-700 hover:bg-gray-100">Analytics</a>
+        {% if user.is_authenticated %}
+          <a href="{% url 'main:dashboard' %}" class="text-gray-700 hover:text-blue-600 font-medium">Dashboard</a>
+          <a href="{% url 'main:emp_profile' pk=user.id %}" class="text-gray-700 hover:text-blue-600 font-medium">Profile</a>
+          <a href="{% url 'main:emp_list' %}" class="text-gray-700 hover:text-blue-600 font-medium">EmployeeList</a>
+          <a href="{% url 'main:emp_edit' pk=user.id %}" class="text-gray-700 hover:text-blue-600 font-medium">EmployeeEdit</a>
+          <a href="{% url 'main:emp_details' pk=user.id %}" class="text-gray-700 hover:text-blue-600 font-medium">EmployeeDetails</a>
+          <a href="{% url 'main:emp_skillgap' pk=user.id %}" class="text-gray-700 hover:text-blue-600 font-medium">Skillgap</a>
+          <a href="{% url 'main:emp_training' pk=user.id %}" class="text-gray-700 hover:text-blue-600 font-medium">Trainings</a>
+          <a href="{% url 'main:feedback' %}" class="text-gray-700 hover:text-blue-600 font-medium">Feedback</a>
+
+          <a href="{% url 'main:analytics' %}" class="text-gray-700 hover:text-blue-600 font-medium">Analytics</a>
+          <a href="{% url 'main:posts' %}" class="text-gray-700 hover:text-blue-600 font-medium">Posts</a>
+          <a href="{% url 'main:succession' %}" class="text-gray-700 hover:text-blue-600 font-medium">Succession</a>
+          <a href="{% url 'main:promotion' %}" class="text-gray-700 hover:text-blue-600 font-medium">Promotion</a>
+          <a href="{% url 'main:reports' %}" class="text-gray-700 hover:text-blue-600 font-medium">Reports</a>
+
+          {% endif %}
+
+
       </div>
     </div>
   </nav>
