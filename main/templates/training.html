@@ -23,9 +23,7 @@
             </svg>
           </button>
         </div>
-        <div>
-          <button class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition duration-300">Filter Programs</button>
-        </div>
+        
       </div>
 
       <!-- Training Programs List -->
@@ -100,5 +98,28 @@
 
     </div>
   </section>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById("search");
+    const programs = document.querySelectorAll(".flex.items-center.justify-between.border-b");
+
+    searchInput.addEventListener("input", function () {
+        const searchValue = searchInput.value.toLowerCase();
+        
+        programs.forEach(program => {
+            const programName = program.querySelector("p.text-lg.font-semibold").textContent.toLowerCase();
+            
+            if (programName.includes(searchValue)) {
+                program.style.display = "flex";
+            } else {
+                program.style.display = "none";
+            }
+        });
+    });
+});
+
+</script>
+
 
 {% endblock %}
