@@ -13,7 +13,19 @@ def home(request):
 
 
 def dashboard(request):
-    return render(request, "dashboard.html")
+    users = UserProfileModel.objects.all()
+    total_emp = len(users)
+
+    feedback = FeedbackModel.objects.all()
+    avg_rating = 0
+    for each in feedback:
+        avg_rating+=int(each.rating)
+    if len(feedback)>0:
+        avg_rating/=len(feedback)
+    
+    data = {"avg_rating":avg_rating,"total_emp":total_emp}
+
+    return render(request, "dashboard.html",data)
 
 
 @login_required
@@ -33,40 +45,44 @@ def emp_profile(request,pk):
 
 @login_required
 def edit_profile(request,pk):
-    user_profile = UserProfileModel.objects.get(user__id=pk)
-
-    if request.method == "POST":
-        user_profile.user.username = request.POST.get("username", user_profile.user.username)
-        user_profile.role = request.POST.get("role", user_profile.role)
-        user_profile.phone_number = request.POST.get("phone_number", user_profile.phone_number)
-        user_profile.email = request.POST.get("email", user_profile.email)
-        user_profile.address = request.POST.get("address", user_profile.address)
-        user_profile.experience_years = request.POST.get("experience_years", user_profile.experience_years)
-        user_profile.rating = request.POST.get("rating", user_profile.rating)
-
-        if "image" in request.FILES:
-            user_profile.image = request.FILES["image"]
-
-        # Update Many-to-Many Fields
-        user_profile.skills.set(request.POST.getlist("skills"))
-        user_profile.certifications.set(request.POST.getlist("certifications"))
-        user_profile.achievements.set(request.POST.getlist("achievements"))
-
-        user_profile.save()
-        user_profile.user.save()
-
+    if request.user.last_name=="manager" or request.user.last_name=="managemet" or pk==request.user.id:
         
-        return redirect("main:emp_profile", pk=request.user.id)  # Redirect to profile page
 
-    # Pass all available skills, certifications, achievements for selection
-    context = {
-        "user_data": user_profile,
-        "all_skills": SkillModel.objects.all(),
-        "all_certifications": CertificationModel.objects.all(),
-        "all_achievements": AchievementModel.objects.all(),
-    }
-    return render(request, "profile_edit.html", context)
+        user_profile = UserProfileModel.objects.get(user__id=pk)
 
+        if request.method == "POST":
+            user_profile.user.username = request.POST.get("username", user_profile.user.username)
+            user_profile.role = request.POST.get("role", user_profile.role)
+            user_profile.phone_number = request.POST.get("phone_number", user_profile.phone_number)
+            user_profile.email = request.POST.get("email", user_profile.email)
+            user_profile.address = request.POST.get("address", user_profile.address)
+            user_profile.experience_years = request.POST.get("experience_years", user_profile.experience_years)
+            user_profile.rating = request.POST.get("rating", user_profile.rating)
+
+            if "image" in request.FILES:
+                user_profile.image = request.FILES["image"]
+
+            # Update Many-to-Many Fields
+            user_profile.skills.set(request.POST.getlist("skills"))
+            user_profile.certifications.set(request.POST.getlist("certifications"))
+            user_profile.achievements.set(request.POST.getlist("achievements"))
+
+            user_profile.save()
+            user_profile.user.save()
+
+            
+            return redirect("main:emp_details", pk=pk)  # Redirect to profile page
+
+        # Pass all available skills, certifications, achievements for selection
+        context = {
+            "user_data": user_profile,
+            "all_skills": SkillModel.objects.all(),
+            "all_certifications": CertificationModel.objects.all(),
+            "all_achievements": AchievementModel.objects.all(),
+        }
+        return render(request, "profile_edit.html", context)
+    else:
+        return render(request, "error.html")
 
 
 
@@ -74,11 +90,11 @@ def edit_profile(request,pk):
 def emp_details(request,pk):
 
     loggedin_user = request.user
-    user_data = UserProfileModel.objects.get(user=loggedin_user)
+    user_data = UserProfileModel.objects.get(user__id=pk)
     data = {"user_data":user_data}
 
 
-    return render(request, 'profile.html',data)
+    return render(request, 'emp_details.html',data)
 
 @login_required
 def emp_list(request):
