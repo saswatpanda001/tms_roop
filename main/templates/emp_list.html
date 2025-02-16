@@ -25,11 +25,10 @@
         <!-- Department Filter -->
         <select id="department" class="p-2 border rounded-md" onchange="filterEmployees()">
           <option value="">All Departments</option>
-          <option value="IT">IT</option>
-          <option value="HR">HR</option>
-          <option value="Marketing">Marketing</option>
-          <option value="Sales">Sales</option>
-          <option value="Finance">Finance</option>
+          {% for each in position %}
+          <option value="IT">{{each.title}}</option>
+          {% endfor %}
+          
         </select>
       </div>
 
@@ -38,6 +37,7 @@
         <table class="min-w-full table-auto">
           <thead>
             <tr>
+              <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600">Employee ID</th>
               <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600">Name</th>
               <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600">Email</th>
               <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600">Department</th>
@@ -49,8 +49,9 @@
           <tbody>
             <!-- Employee Row 1 -->
             <tr class="employee-row">
-              <td class="px-6 py-3 employee-name">{{data.username}}</td>
-              <td class="px-6 py-3">{{data.email}}</td>
+              <td class="px-6 py-3 employee-id">{{data.user.id}}</td>
+              <td class="px-6 py-3 employee-name">{{data.user.username}}</td>
+              <td class="px-6 py-3">{{data.user.email}}</td>
               <td class="px-6 py-3 employee-department">{{data.position}}</td>
               <td class="px-6 py-3">{{data.position_gen}}</td>
               <td class="px-6 py-3">

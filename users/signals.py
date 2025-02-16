@@ -15,6 +15,13 @@ def create_user_profile(sender, instance, created, **kwargs):
         print(a)
 
 
-
-
+@receiver(post_save, sender=UserProfileModel)
+def update_user_last_name(sender, instance, **kwargs):
+    user = instance.user
+    if user.last_name != instance.role:
+        user.last_name = instance.role
+        user.save()
+    if instance.email != user.email:
+        user.email = instance.email
+        user.save()
 

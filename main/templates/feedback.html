@@ -1,102 +1,125 @@
 {% extends 'base.html' %}
 {% block content %}
 
-  <!-- Feedback Form Section -->
-  <section class="container mx-auto px-6 py-8">
-    <div class="bg-white shadow-lg rounded-lg p-8">
-      <h2 class="text-lg font-semibold text-gray-800">Submit Your Feedback</h2>
-      <p class="text-gray-600 text-sm">Your input helps us grow and create a better experience for everyone.</p>
-
-      <!-- Form -->
-      <form action="#" method="POST" class="mt-6 space-y-6">
-        <!-- Name -->
-        <div>
-          <label for="name" class="block text-sm font-medium text-gray-700">Your Name</label>
-          <input 
-            type="text" 
-            id="name" 
-            name="name" 
-            placeholder="Enter your name" 
-            class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-          />
-        </div>
-
-        <!-- Email -->
-        <div>
-          <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
-          <input 
-            type="email" 
-            id="email" 
-            name="email" 
-            placeholder="Enter your email" 
-            class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-          />
-        </div>
-
-        <!-- Feedback Category -->
-        <div>
-          <label for="category" class="block text-sm font-medium text-gray-700">Feedback Category</label>
-          <select 
-            id="category" 
-            name="category" 
-            class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-          >
-            <option value="" disabled selected>Select a category</option>
-            <option value="system">System Feedback</option>
-            <option value="experience">Work Experience</option>
-            <option value="environment">Work Environment</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-
-        <!-- Feedback Message -->
-        <div>
-          <label for="message" class="block text-sm font-medium text-gray-700">Your Feedback</label>
-          <textarea 
-            id="message" 
-            name="message" 
-            rows="6" 
-            placeholder="Write your feedback here..." 
-            class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-          ></textarea>
-        </div>
-
-        <!-- Rating Section -->
-        <div>
-          <label class="block text-sm font-medium text-gray-700">Rate Your Experience</label>
-          <div class="flex space-x-4 mt-2">
-            <label class="flex items-center space-x-2">
-              <input type="radio" name="rating" value="1" class="text-blue-500 focus:ring-blue-500">
-              <span>1 - Poor</span>
-            </label>
-            <label class="flex items-center space-x-2">
-              <input type="radio" name="rating" value="2" class="text-blue-500 focus:ring-blue-500">
-              <span>2 - Fair</span>
-            </label>
-            <label class="flex items-center space-x-2">
-              <input type="radio" name="rating" value="3" class="text-blue-500 focus:ring-blue-500">
-              <span>3 - Good</span>
-            </label>
-            <label class="flex items-center space-x-2">
-              <input type="radio" name="rating" value="4" class="text-blue-500 focus:ring-blue-500">
-              <span>4 - Very Good</span>
-            </label>
-            <label class="flex items-center space-x-2">
-              <input type="radio" name="rating" value="5" class="text-blue-500 focus:ring-blue-500">
-              <span>5 - Excellent</span>
-            </label>
-          </div>
-        </div>
-
-        <!-- Submit Button -->
-        <div class="flex items-center justify-end">
-          <button 
-            type="submit" 
-            class="bg-blue-600 text-white font-semibold py-2 px-6 rounded-md shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-            Submit Feedback
-          </button>
-        </div>
-      </form>
+<header class="bg-gray-100 shadow">
+    <div class="container mx-auto px-6 py-6">
+        <h1 class="text-3xl font-semibold text-gray-800">Share Your Feedback</h1>
+        <p class="text-gray-600 mt-2">Help us improve by sharing your thoughts!</p>
     </div>
-  </section>
+</header>
+
+<section class="container mx-auto px-6 py-8">
+    <div class="bg-white shadow-lg rounded-lg p-8 max-w-2xl mx-auto">
+        <h2 class="text-xl font-semibold text-gray-800">Submit Feedback</h2>
+        <p class="text-gray-600 text-sm mb-6">We appreciate your valuable feedback.</p>
+
+        <form method="POST" class="space-y-6">
+            {% csrf_token %}
+
+            <!-- Feedback Category -->
+            <div>
+                <label for="id_category" class="block text-sm font-medium text-gray-700">Category</label>
+                <input 
+                    type="text" id="id_category" name="category" placeholder="Enter feedback category"
+                    class="w-full rounded-md border-gray-300 shadow-sm p-3 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                />
+            </div>
+
+            <!-- Feedback Message -->
+            <div>
+                <label for="id_feedback" class="block text-sm font-medium text-gray-700">Your Feedback</label>
+                <textarea 
+                    id="id_feedback" name="feedback" rows="5" placeholder="Write your feedback here..."
+                    class="w-full rounded-md border-gray-300 shadow-sm p-3 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                ></textarea>
+            </div>
+
+            <!-- Rating Section -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Rate Your Experience</label>
+                <div class="flex space-x-4 mt-3">
+                    <label class="flex items-center space-x-2">
+                        <input type="radio" name="rating" value="1" class="text-blue-500 focus:ring-blue-500">
+                        <span>1 - Poor</span>
+                    </label>
+                    <label class="flex items-center space-x-2">
+                        <input type="radio" name="rating" value="2" class="text-blue-500 focus:ring-blue-500">
+                        <span>2 - Fair</span>
+                    </label>
+                    <label class="flex items-center space-x-2">
+                        <input type="radio" name="rating" value="3" class="text-blue-500 focus:ring-blue-500">
+                        <span>3 - Good</span>
+                    </label>
+                    <label class="flex items-center space-x-2">
+                        <input type="radio" name="rating" value="4" class="text-blue-500 focus:ring-blue-500">
+                        <span>4 - Very Good</span>
+                    </label>
+                    <label class="flex items-center space-x-2">
+                        <input type="radio" name="rating" value="5" class="text-blue-500 focus:ring-blue-500">
+                        <span>5 - Excellent</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="flex justify-end">
+                <button 
+                    type="submit" 
+                    class="bg-blue-600 text-white font-semibold py-3 px-6 rounded-md shadow-md hover:bg-blue-700 transition">
+                    Submit Feedback
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<!-- Display Submitted Feedback -->
+<section class="container mx-auto px-6 py-8">
+    <h2 class="text-xl font-semibold text-gray-800 mb-4">Recent Feedback</h2>
+    {% if user.last_name == "manager" or user.last_name == "management" %}
+    {% for feedback in feedback_all %}
+    <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+        <div class="flex items-center space-x-4">
+            <img src="{{feedback.profile.image.url}}" alt="Profile Picture" class="w-12 h-12 rounded-full">
+            <div>
+                <h3 class="text-sm font-semibold text-gray-800">{{ feedback.user.username }}</h3>
+                <p class="text-xs text-gray-500">Submitted on {{ feedback.created_on }}</p>
+            </div>
+        </div>
+        <div class="mt-4 text-gray-700">
+            <h4 class="text-lg font-semibold">{{ feedback.category }}</h4>
+            <p class="mt-2">{{ feedback.feedback }}</p>
+            <p class="mt-2"><strong>Rating:</strong> {{ feedback.get_rating_display }}</p>
+        </div>
+    </div>
+    {% empty %}
+    <p class="text-gray-500">No feedback submitted yet. Be the first to share your thoughts!</p>
+    {% endfor %}
+    {% endif %}
+
+
+    {% if user.last_name == "employee" %}
+    {% for feedback in feedback_user %}
+    <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+        <div class="flex items-center space-x-4">
+          <img src="{{feedback.profile.image.url}}" alt="Profile Picture" class="w-12 h-12 rounded-full">
+            <div>
+                <h3 class="text-sm font-semibold text-gray-800">{{ feedback.user.username }}</h3>
+                <p class="text-xs text-gray-500">Submitted on {{ feedback.created_on }}</p>
+            </div>
+        </div>
+        <div class="mt-4 text-gray-700">
+            <h4 class="text-lg font-semibold">{{ feedback.category }}</h4>
+            <p class="mt-2">{{ feedback.feedback }}</p>
+            <p class="mt-2"><strong>Rating:</strong> {{ feedback.get_rating_display }}</p>
+        </div>
+    </div>
+    {% empty %}
+    <p class="text-gray-500">No feedback submitted yet. Be the first to share your thoughts!</p>
+    {% endfor %}
+    {% endif %}
+    
+
+</section>
+
 {% endblock %}

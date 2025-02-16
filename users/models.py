@@ -1,8 +1,11 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils import timezone
+from django.contrib.auth.models import AbstractUser, Group, Permission
+
 
 User = get_user_model()
+
 
 
 class AchievementModel(models.Model):
@@ -155,10 +158,10 @@ class EmployeeProjectModel(models.Model):
 
 
 class BlogModel(models.Model):
-    author = models.ForeignKey(EmployeeModel, on_delete=models.CASCADE,blank=True, null=True)
+    author = models.ForeignKey(UserProfileModel, on_delete=models.CASCADE,blank=True, null=True)
     title = models.CharField(max_length=200,blank=True, null=True)
     content = models.TextField(blank=True, null=True)
-    publish_date = models.DateField(blank=True, null=True)
+    publish_date = models.DateTimeField(default=timezone.now,blank=True, null=True)
 
     def __str__(self):
         return self.title
