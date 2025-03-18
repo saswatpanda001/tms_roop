@@ -1,0 +1,114 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <!-- Reports Page Content -->
+  <section class="container mx-auto px-6 py-8">
+    
+    <!-- Filters Section -->
+    <div class="bg-white shadow-lg rounded-lg p-6 mb-8">
+      <h2 class="text-lg font-semibold text-gray-800">Filter and Generate Reports</h2>
+      <p class="text-gray-600 text-sm">Select parameters to generate specific reports.</p>
+      <form class="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div>
+          <label for="reportType" class="block text-sm font-medium text-gray-700">Report Type</label>
+          <select id="reportType" name="reportType" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm">
+            <option value="performance">Employee Performance</option>
+            <option value="training">Training Outcomes</option>
+            <option value="revenue">Revenue Contribution</option>
+            <option value="attendance">Attendance</option>
+          </select>
+        </div>
+        <div>
+          <label for="timePeriod" class="block text-sm font-medium text-gray-700">Time Period</label>
+          <select id="timePeriod" name="timePeriod" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm">
+            <option value="lastMonth">Last Month</option>
+            <option value="lastQuarter">Last Quarter</option>
+            <option value="lastYear">Last Year</option>
+          </select>
+        </div>
+        <div>
+          <label for="department" class="block text-sm font-medium text-gray-700">Department</label>
+          <select id="department" name="department" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm">
+            <option value="all">All Departments</option>
+            <option value="sales">Sales</option>
+            <option value="hr">Human Resources</option>
+            <option value="it">IT</option>
+            <option value="marketing">Marketing</option>
+          </select>
+        </div>
+        <div class="self-end">
+          <button type="submit" class="w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded-md shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            Generate Report
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Generated Reports Section -->
+    <div class="bg-white shadow-lg rounded-lg p-6 mb-8">
+      <h2 class="text-lg font-semibold text-gray-800">Generated Reports</h2>
+      <p class="text-gray-600 text-sm">View the detailed reports generated based on your selected criteria.</p>
+      <table class="w-full mt-4 table-auto text-sm text-gray-600">
+        <thead class="bg-blue-100 text-gray-700">
+          <tr>
+            <th class="px-4 py-2">Report Name</th>
+            <th class="px-4 py-2">Time Period</th>
+            <th class="px-4 py-2">Department</th>
+            <th class="px-4 py-2">Download</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b hover:bg-gray-50">
+            <td class="px-4 py-2">Employee Performance Report</td>
+            <td class="px-4 py-2">Last Quarter</td>
+            <td class="px-4 py-2">All Departments</td>
+            <td class="px-4 py-2">
+              <a href="#" class="text-blue-600 hover:underline">Download PDF</a>
+            </td>
+          </tr>
+          <tr class="border-b hover:bg-gray-50">
+            <td class="px-4 py-2">Training Outcomes Report</td>
+            <td class="px-4 py-2">Last Month</td>
+            <td class="px-4 py-2">Sales</td>
+            <td class="px-4 py-2">
+              <a href="#" class="text-blue-600 hover:underline">Download PDF</a>
+            </td>
+          </tr>
+          <tr class="border-b hover:bg-gray-50">
+            <td class="px-4 py-2">Revenue Contribution Report</td>
+            <td class="px-4 py-2">Last Year</td>
+            <td class="px-4 py-2">IT</td>
+            <td class="px-4 py-2">
+              <a href="#" class="text-blue-600 hover:underline">Download PDF</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Charts Section -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <!-- Performance Chart -->
+      <div class="bg-white shadow-lg rounded-lg p-6">
+        <h2 class="text-lg font-semibold text-gray-800">Performance Trends</h2>
+        <p class="text-gray-600 text-sm">Visualize employee performance trends over time.</p>
+        <div class="mt-6 bg-blue-100 rounded-lg h-48 flex items-center justify-center">
+          <span class="text-blue-600">[Performance Chart]</span>
+        </div>
+      </div>
+
+      <!-- Training Outcomes Chart -->
+      <div class="bg-white shadow-lg rounded-lg p-6">
+        <h2 class="text-lg font-semibold text-gray-800">Training Outcomes</h2>
+        <p class="text-gray-600 text-sm">Analyze the effectiveness of training programs.</p>
+        <div class="mt-6 bg-blue-100 rounded-lg h-48 flex items-center justify-center">
+          <span class="text-blue-600">[Training Outcomes Chart]</span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+{% endblock %}

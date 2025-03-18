@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto bg-white p-6 shadow-md rounded-lg my-8">
+    <h1 class="text-2xl font-semibold mb-4">Update Job Status</h1>
+
+    <form method="POST" class="space-y-4">
+        {% csrf_token %}
+
+        <div>
+            <label class="block text-gray-700 font-semibold">Job Status</label>
+            {{ form.status }}
+            {% if form.status.errors %}
+            <p class="text-red-500 text-sm mt-1">{{ form.status.errors.0 }}</p>
+            {% endif %}
+        </div>
+
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg">Update</button>
+        <a href="{% url 'main:job_detail' job.pk %}" class="text-gray-500 ml-4">Cancel</a>
+    </form>
+</div>
+{% endblock %}

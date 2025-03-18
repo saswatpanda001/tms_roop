@@ -1,0 +1,22 @@
+
+    {% extends 'base.html' %}
+
+    {% block content %}
+    <div class="container mx-auto p-6">
+        <h1 class="text-3xl font-bold text-red-700 mb-4">HR Dashboard</h1>
+        <div class="grid grid-cols-3 gap-6">
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h2 class="text-xl font-semibold">Company Insights</h2>
+                <p>Monitor overall company performance.</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h2 class="text-xl font-semibold">HR Analytics</h2>
+                <p>Review employee satisfaction and retention data.</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h2 class="text-xl font-semibold">Budget & Resources</h2>
+                <p>Oversee financials and resource allocation.</p>
+            </div>
+        </div>
+    </div>
+    {% endblock %}

@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <!-- Training Programs Section -->
+  <section class="py-10">
+    <div class="container mx-auto px-6">
+      <!-- Page Header -->
+      <div class="mb-8">
+        <h1 class="text-3xl font-semibold text-gray-800">Available Training Programs</h1>
+        <p class="text-gray-600">Explore various training programs to enhance your skills and advance in your career.</p>
+      </div>
+      {% if user.last_name != "employee" %}
+
+      <div>
+      <a href="{% url 'main:add_training_program' %}" class="text-gray-700 bg-blue-400 rounded-2xl p-5 m-5 hover:text-blue-600 font-medium">Add Training</a>
+      </div>
+      {% endif %}
+      <!-- Search Section -->
+      <div class="flex justify-between items-center my-8">
+        <div class="relative">
+          <input type="text" id="search" class="w-64 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Search by program name...">
+          <button class="absolute right-2 top-2 text-blue-600">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 17l-2-2m0 0l-2 2m2-2V7m4 10l2-2m0 0l2 2m-2-2V7" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Training Programs List -->
+      <div class="bg-white shadow-lg rounded-lg p-6">
+        <h3 class="text-xl font-medium text-gray-700 mb-4">List of Available Programs</h3>
+    
+        {% for program in training_programs %}
+        <div class="flex items-center justify-between border-b pb-4 mb-4">
+          <div class="flex items-center">
+            <img src="https://www.w3schools.com/w3images/avatar2.png" alt="Training Image" class="w-16 h-16 rounded-full border-2 border-blue-500 mr-6">
+            <div>
+              <a href="{% url 'main:program_detail' program.id %}">
+              <p class="text-lg font-semibold text-gray-800">{{ program.name }}</p> </a>
+              <p class="text-sm text-gray-500">{{ program.description }}</p>
+              <p class="text-sm text-gray-500">Skills: 
+                {% for skill in program.skills.all %}
+                  {{ skill.name }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+              </p>
+              <p class="text-sm text-gray-500">Eligible Positions: 
+                {% for position in program.eligible_positions.all %}
+                  {{ position.title }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+              </p>
+            </div>
+          </div>
+          <div class="text-right">
+            <p class="text-sm text-gray-500">Duration: {{ program.duration }} Weeks</p>
+            <p class="text-sm text-gray-500">Level: {{ program.level }}</p>
+            {% if user.last_name == "employee" %}
+            <!-- Enrollment form -->
+            <div class="mt-2">
+              <a href="{% url 'main:program_detail' program.id %}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
+                Enroll Now
+            </a></div>
+            {% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const searchInput = document.getElementById("search");
+      const programs = document.querySelectorAll(".flex.items-center.justify-between.border-b");
+
+      searchInput.addEventListener("input", function () {
+        const searchValue = searchInput.value.toLowerCase();
+        
+        programs.forEach(program => {
+          const programName = program.querySelector("p.text-lg.font-semibold").textContent.toLowerCase();
+          program.style.display = programName.includes(searchValue) ? "flex" : "none";
+        });
+      });
+    });
+  </script>
+{% endblock %}

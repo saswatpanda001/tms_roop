@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mx-auto px-6 py-10">
+    
+    <!-- Program Details Card -->
+    <div class="bg-white shadow-xl rounded-lg p-8 max-w-3xl mx-auto">
+        
+        <!-- Program Title -->
+        <h1 class="text-4xl font-bold text-gray-800 mb-4">{{ program.name }}</h1>
+        <p class="text-gray-600 text-lg">Duration: <span class="font-semibold">{{ program.duration }}</span> weeks</p>
+        <p class="text-gray-600 text-lg">Level: <span class="font-semibold">{{ program.level }}</span></p>
+
+        <!-- Skills Covered -->
+        <h3 class="mt-6 text-xl font-semibold text-blue-700">Skills Covered</h3>
+        <ul class="mt-2 space-y-2">
+            {% for skill in program.skills.all %}
+                <li class="bg-blue-100 text-blue-700 px-4 py-2 rounded-md w-fit shadow-md">
+                    {{ skill.name }}
+                </li>
+            {% endfor %}
+        </ul>
+
+        <!-- Enrolled Users -->
+         {% if user.last_name != "employee" %}
+        <h3 class="mt-6 text-xl font-semibold text-green-700">Enrolled Users</h3>
+        <ul class="mt-2 space-y-2">
+            {% for enrollment in enrolled_users %}
+            <a href="{% url 'main:emp_details' user.id %}">
+                <li class="bg-green-100 text-green-700 px-4 py-2 rounded-md w-fit shadow-md">
+                    {{ enrollment.user.username }} 
+                    <span class="text-gray-500 text-sm">(Enrolled on {{ enrollment.enrollment_date }})</span>
+                </li></a>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+
+        {% if user.last_name == "employee" %}
+
+        <!-- Enroll Button -->
+        {% if not is_enrolled %}
+            <a href="{% url 'main:enroll_in_program' program.id %}" 
+               class="block mt-6 bg-blue-600 text-white text-center py-3 rounded-lg shadow-lg hover:bg-blue-700 transition duration-300">
+                Enroll in Program
+            </a>
+        {% else %}
+            <p class="text-green-600 font-semibold mt-6 text-center">
+                ✅ You are already enrolled in this program.
+            </p>
+        {% endif %}
+        {% endif %}
+
+    </div>
+
+</div>
+{% endblock %}

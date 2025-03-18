@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto p-8 bg-white rounded-lg shadow-lg my-8">
+    <h2 class="text-3xl font-semibold text-gray-800 mb-6">Add New Training Program</h2>
+
+    {% if messages %}
+        <div class="mb-4">
+            {% for message in messages %}
+                <div class="bg-green-100 text-green-700 p-4 rounded-md border-l-4 border-green-500">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <form method="POST" class="space-y-6">
+        {% csrf_token %}
+        
+        <div class="grid grid-cols-1 gap-6">
+            <div>
+                <label for="name" class="block text-sm font-medium text-gray-700">Training Program Name</label>
+                {{ form.name }}
+            </div>
+            
+            <div>
+                <label for="duration" class="block text-sm font-medium text-gray-700">Duration (in months)</label>
+                {{ form.duration }}
+            </div>
+
+            <div>
+                <label for="skills" class="block text-sm font-medium text-gray-700">Skills Required</label>
+                {{ form.skills }}
+            </div>
+
+            <div>
+                <label for="eligible_positions" class="block text-sm font-medium text-gray-700">Eligible Positions</label>
+                {{ form.eligible_positions }}
+            </div>
+
+            <div>
+                <label for="level" class="block text-sm font-medium text-gray-700">Level</label>
+                {{ form.level }}
+            </div>
+        </div>
+
+        <div class="flex justify-end">
+            <button type="submit" class="bg-blue-600 text-white px-5 py-2 rounded-md hover:bg-blue-700 transition duration-300 shadow-md">
+                Add Training Program
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

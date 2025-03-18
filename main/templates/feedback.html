@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+    {% if user.last_name != "employee" %}
+    <!-- Left Side: Feedback Form -->
+    <div class="p-6 bg-white shadow-md rounded-lg">
+        <h2 class="text-2xl font-bold mb-4">Submit Performance Review</h2>
+        
+        <form method="post" class="space-y-4">
+            {% csrf_token %}
+            
+            <div>
+                <label class="block text-gray-700">Receiver</label>
+                {{ form.receiver }}
+            </div>
+
+            <div>
+                <label class="block text-gray-700">Category</label>
+                {{ form.category }}
+            </div>
+
+            <div>
+                <label class="block text-gray-700">Description</label>
+                {{ form.description }}
+            </div>
+
+            <div>
+                <label class="block text-gray-700">Rating</label>
+                {{ form.rating }}
+            </div>
+
+            <div>
+                <label class="block text-gray-700">Performance Percentage</label>
+                {{ form.performance_percentage }}
+            </div>
+
+            <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
+                Submit Feedback
+            </button>
+        </form>
+    </div>
+    {% endif %}
+
+    <!-- Right Side: Feedback List -->
+    <div class="p-6 bg-gray-50 shadow-md rounded-lg overflow-y-auto max-h-[500px]">
+        <h2 class="text-2xl font-bold mb-4">Recent Performance Review</h2>
+
+        {% if user.last_name == 'employee' %}
+            {% for feedback in feedback_user %}
+                <div class="p-4 bg-gray-100 shadow rounded-lg mb-4">
+                    <p><strong>From:</strong> {{ feedback.sender }}</p>
+                    <p><strong>To:</strong> {{ feedback.receiver }}</p>
+                    <p><strong>Category:</strong> {{ feedback.category }}</p>
+                    <p><strong>Rating:</strong> {{ feedback.get_rating_display }}</p>
+                    <p><strong>Performance:</strong> {{ feedback.performance_percentage }}%</p>
+                    <p><strong>Feedback:</strong> {{ feedback.description }}</p>
+                    <p class="text-gray-500 text-sm">Submitted on: {{ feedback.created_on|date:"F d, Y H:i" }}</p>
+                </div>
+            {% empty %}
+                <p>No feedback submitted yet.</p>
+            {% endfor %}
+        {% else %}
+            {% for feedback in feedback_all %}
+                <div class="p-4 bg-gray-100 shadow rounded-lg mb-4">
+                    <p><strong>From:</strong> {{ feedback.sender }}</p>
+                    <p><strong>To:</strong> {{ feedback.receiver }}</p>
+                    <p><strong>Category:</strong> {{ feedback.category }}</p>
+                    <p><strong>Rating:</strong> {{ feedback.get_rating_display }}</p>
+                    <p><strong>Performance:</strong> {{ feedback.performance_percentage }}%</p>
+                    <p><strong>Feedback:</strong> {{ feedback.description }}</p>
+                    <p class="text-gray-500 text-sm">Submitted on: {{ feedback.created_on|date:"F d, Y H:i" }}</p>
+                </div>
+            {% empty %}
+                <p>No feedback submitted yet.</p>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+</div>
+{% endblock %}

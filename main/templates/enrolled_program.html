@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <section class="py-10">
+    <div class="container mx-auto px-6">
+      <!-- Page Header -->
+      <div class="mb-8">
+        <h1 class="text-3xl font-semibold text-gray-800">My Enrolled Training Programs</h1>
+        <p class="text-gray-600">Review the training programs you have enrolled in.</p>
+      </div>
+
+      <!-- Training Programs List -->
+      <div class="bg-white shadow-lg rounded-lg p-6">
+        <h3 class="text-xl font-medium text-gray-700 mb-4">Enrolled Programs</h3>
+    
+        {% if enrolled_programs %}
+          {% for program in enrolled_programs %}
+          <div class="flex items-center justify-between border-b pb-4 mb-4">
+            <div class="flex items-center">
+              <img src="https://www.w3schools.com/w3images/avatar2.png" alt="Training Image" class="w-16 h-16 rounded-full border-2 border-blue-500 mr-6">
+              <div>
+                <p class="text-lg font-semibold text-gray-800">{{ program.name }}</p>
+                <p class="text-sm text-gray-500">{{ program.description }}</p>
+                <p class="text-sm text-gray-500">Duration: {{ program.duration }} Weeks</p>
+                <p class="text-sm text-gray-500">Level: {{ program.level }}</p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        {% else %}
+          <p class="text-gray-500">You are not enrolled in any training programs yet.</p>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+{% endblock %}

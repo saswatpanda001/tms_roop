@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mx-auto px-6 py-10">
+    <!-- Job Title & Details -->
+    <div class="bg-white shadow-lg rounded-lg p-6">
+        <h1 class="text-3xl font-bold text-gray-800">{{ job.title }}</h1>
+        <p class="text-gray-600 mt-2 text-lg">{{ job.description }}</p>
+        <p class="text-gray-500 mt-2"><strong>Posted By:</strong> <span class="text-blue-600">{{ job.posted_by.username }}</span></p>
+        <p class="text-gray-500"><strong>Status:</strong> 
+            <span class="{% if job.status == 'Open' %}text-green-600{% else %}text-red-600{% endif %} font-semibold">
+                {{ job.status }}
+            </span>
+        </p>
+
+        <!-- Apply Button -->
+        {% if user.last_name == 'employee' and job.status == 'Open' %}
+        <div class="mt-5">
+            <a href="{% url 'main:apply_job' job.pk %}" 
+               class="bg-blue-600 text-white px-6 py-2 rounded-md shadow-md hover:bg-blue-700 transition duration-300">
+                🚀 Apply Now
+            </a>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Job Applicants Section (Only for Managers) -->
+    {% if user.last_name == 'manager' %}
+    <div class="mt-12 bg-white shadow-lg rounded-lg p-6">
+        <h2 class="text-2xl font-semibold text-gray-800">📋 Job Applicants</h2>
+        
+        {% if applications %}
+        <table class="w-full mt-4 border border-gray-300 rounded-lg overflow-hidden shadow-sm">
+            <thead>
+                <tr class="bg-gray-100 text-gray-700 text-left">
+                    <th class="border px-6 py-3">Applicant</th>
+                    <th class="border px-6 py-3">Resume</th>
+                    <th class="border px-6 py-3">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for application in applications %}
+                <tr class="hover:bg-gray-50 transition duration-300">
+                    <td class="border px-6 py-3 text-gray-800 font-medium">{{ application.applicant.username }}</td>
+                    <td class="border px-6 py-3">
+                        <a href="{{ application.resume.url }}" class="text-blue-500 font-semibold hover:underline" target="_blank">📄 View Resume</a>
+                    </td>
+                    <td class="border px-6 py-3">
+                        <select class="status-dropdown border px-3 py-2 rounded-lg bg-gray-100 text-gray-800 focus:ring focus:ring-blue-300" 
+                                data-application-id="{{ application.id }}">
+                            <option value="Pending" {% if application.status == 'Pending' %}selected{% endif %}>🕒 Pending</option>
+                            <option value="Shortlisted" {% if application.status == 'Shortlisted' %}selected{% endif %}>✅ Shortlisted</option>
+                            <option value="Rejected" {% if application.status == 'Rejected' %}selected{% endif %}>❌ Rejected</option>
+                        </select>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p class="mt-4 text-gray-500 italic">No applicants yet. 😕</p>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+
+<!-- AJAX for Updating Status -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    document.querySelectorAll(".status-dropdown").forEach(dropdown => {
+        dropdown.addEventListener("change", function() {
+            let applicationId = this.getAttribute("data-application-id");
+            let newStatus = this.value;
+
+            if (confirm("Are you sure you want to update the status?")) {
+                fetch("{% url 'main:update_application_status' %}", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRFToken": "{{ csrf_token }}"
+                    },
+                    body: JSON.stringify({
+                        application_id: applicationId,
+                        status: newStatus
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert("✅ Status updated successfully!");
+                    } else {
+                        alert("❌ Error updating status.");
+                    }
+                })
+                .catch(error => console.error("Error:", error));
+            }
+        });
+    });
+});
+</script>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mx-auto p-8">
+        <h1 class="text-4xl font-bold text-blue-700 mb-6 text-center">Employee Dashboard</h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            <!-- Employee Performance Card -->
+            <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <div class="flex items-center space-x-4">
+                    <div class="text-blue-600 text-4xl">
+                        ⭐ <!-- Star Icon -->
+                    </div>
+                    <h2 class="text-2xl font-semibold">Employee Performance</h2>
+                </div>
+                <p class="text-gray-600 mt-4">Track and analyze employee productivity, achievements, and career growth.</p>
+                <a href="#" class="inline-block mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">View Performance</a>
+            </div>
+            
+            <!-- Project Assignments Card -->
+            <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <div class="flex items-center space-x-4">
+                    <div class="text-green-600 text-4xl">
+                        ⚙️ <!-- Gear Icon -->
+                    </div>
+                    <h2 class="text-2xl font-semibold">Project Assignments</h2>
+                </div>
+                <p class="text-gray-600 mt-4">Manage and track your assigned tasks, deadlines, and project contributions.</p>
+                <a href="#" class="inline-block mt-4 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">View Projects</a>
+            </div>
+            
+            <!-- Reports Card -->
+            <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <div class="flex items-center space-x-4">
+                    <div class="text-red-600 text-4xl">
+                        📈 <!-- Chart Icon -->
+                    </div>
+                    <h2 class="text-2xl font-semibold">Reports & Analytics</h2>
+                </div>
+                <p class="text-gray-600 mt-4">Generate detailed reports on team productivity and business insights.</p>
+                <a href="#" class="inline-block mt-4 bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition">Generate Reports</a>
+            </div>
+
+            
+        </div>
+    </div>
+{% endblock %}

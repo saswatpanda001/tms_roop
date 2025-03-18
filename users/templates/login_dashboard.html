@@ -1,0 +1,59 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select Login</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 flex items-center justify-center min-h-screen p-6">
+
+  <div class="max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 gap-6">
+    
+    <!-- Employee Login -->
+    <a href="{% url 'users:employee_login' %}" class="group block bg-green-500 text-white p-8 rounded-lg shadow-xl transform transition duration-300 hover:scale-105 hover:shadow-2xl">
+      <div class="flex items-center justify-center">
+        <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l-4-4m0 0l4-4m-4 4h8m6 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+      </div>
+      <h2 class="text-2xl font-bold text-center mt-4">Employee Login</h2>
+    </a>
+
+    <!-- Manager Login -->
+    <a href="{% url 'users:manager_login' %}" class="group block bg-blue-500 text-white p-8 rounded-lg shadow-xl transform transition duration-300 hover:scale-105 hover:shadow-2xl">
+      <div class="flex items-center justify-center">
+        <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16l4-4m0 0l4 4m-4-4v12"></path>
+        </svg>
+      </div>
+      <h2 class="text-2xl font-bold text-center mt-4">Manager Login</h2>
+    </a>
+
+    <!-- Management Login -->
+    <a href="{% url 'users:management_login' %}" class="group block bg-yellow-500 text-white p-8 rounded-lg shadow-xl transform transition duration-300 hover:scale-105 hover:shadow-2xl">
+      <div class="flex items-center justify-center">
+        <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M16 12H8m4 0V4m0 8v8"></path>
+        </svg>
+      </div>
+      <h2 class="text-2xl font-bold text-center mt-4">HR Login</h2>
+    </a>
+
+    <!-- Admin Login -->
+    <a href="/admin" class="group block bg-red-500 text-white p-8 rounded-lg shadow-xl transform transition duration-300 hover:scale-105 hover:shadow-2xl">
+      <div class="flex items-center justify-center">
+        <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 12h16m-8 8V4"></path>
+        </svg>
+      </div>
+      <h2 class="text-2xl font-bold text-center mt-4">Management Login</h2>
+    </a>
+
+  </div>
+
+</body>
+</html>

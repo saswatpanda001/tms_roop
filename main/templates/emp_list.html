@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Page Background -->
+<div class="min-h-screen bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center py-10 px-4">
+  <div class="max-w-6xl w-full bg-white shadow-lg rounded-lg p-8">
+    
+    <!-- Page Title -->
+    <div class="mb-6 text-center">
+      <h1 class="text-4xl font-bold text-gray-800">Skill Gap Analysis and Development Plan</h1>
+      <p class="text-gray-600">Search and filter through the list of employees</p>
+    </div>
+
+    <!-- Search Section -->
+    <div class="mb-6 flex flex-wrap gap-4 items-center justify-center">
+      <input id="search" type="text" placeholder="Search by name" class="p-3 border rounded-md w-72 shadow-sm focus:ring-2 focus:ring-blue-400" onkeyup="filterEmployees()">
+    </div>
+
+    <!-- Employee Table -->
+    <div class="overflow-x-auto bg-white shadow-md rounded-lg">
+      <table class="w-full border-collapse">
+        <thead>
+          <tr class="bg-blue-500 text-white">
+            <th class="px-6 py-3 text-left text-sm font-semibold">Employee ID</th>
+            <th class="px-6 py-3 text-left text-sm font-semibold">Name</th>
+            <th class="px-6 py-3 text-left text-sm font-semibold">Role</th>
+            <th class="px-6 py-3 text-left text-sm font-semibold">Skills</th>
+            <th class="px-6 py-3 text-left text-sm font-semibold">Skill Gaps</th>
+            <th class="px-6 py-3 text-left text-sm font-semibold">Development Plan</th>
+            <th class="px-6 py-3 text-left text-sm font-semibold">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for data in emp_list %}
+          <tr class="employee-row border-b hover:bg-gray-100 transition">
+            <td class="px-6 py-3 employee-id">{{ data.user.id }}</td>
+            <td class="px-6 py-3 employee-name">{{ data.user.username }}</td>
+            <td class="px-6 py-3">{{ data.role }}</td>
+            <td class="px-6 py-3">
+              {% if data.skills.all %}
+                {{ data.skills.all|join:", " }}
+              {% else %}
+                <span class="text-gray-400 italic">No skills listed</span>
+              {% endif %}
+            </td>
+            <td class="px-6 py-3">
+              {% if data.skill_gap.all %}
+                {{ data.skill_gap.all|join:", " }}
+              {% else %}
+                <span class="text-gray-400 italic">No gaps</span>
+              {% endif %}
+            </td>
+            <td class="px-6 py-3">
+              {% if data.development_plans %}
+                {{ data.development_plans }}
+              {% else %}
+                <span class="text-gray-400 italic">No plan defined</span>
+              {% endif %}
+            </td>
+            <td class="px-6 py-3 flex space-x-2">
+              <a href="{% url 'main:emp_details' pk=data.user.id %}" class="text-blue-600 hover:underline">View</a>
+              <a href="{% url 'main:profile_edit' pk=data.user.id %}" class="text-green-600 hover:underline">Edit</a>
+            
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div id="confirmationModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+  <div class="bg-white p-6 rounded-lg shadow-lg text-center max-w-sm">
+    <p class="text-lg font-semibold text-gray-800">Are you sure you want to delete?</p>
+    <div class="mt-4 flex justify-center gap-4">
+      <button id="confirmDelete" class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600">Yes, Delete</button>
+      <button id="cancelDelete" class="bg-gray-300 py-2 px-4 rounded hover:bg-gray-400">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Filter Employees
+  function filterEmployees() {
+    const searchQuery = document.getElementById('search').value.toLowerCase();
+    const employees = document.querySelectorAll('.employee-row');
+
+    employees.forEach(employee => {
+      const name = employee.querySelector('.employee-name').textContent.toLowerCase();
+
+      if (name.includes(searchQuery)) {
+        employee.style.display = '';
+      } else {
+        employee.style.display = 'none';
+      }
+    });
+  }
+
+  // Show Modal
+  function showModal(userId) {
+    document.getElementById('confirmationModal').classList.remove('hidden');
+    document.getElementById('confirmDelete').onclick = function() {
+      alert(`Employee ID ${userId} deleted!`);
+      document.getElementById('confirmationModal').classList.add('hidden');
+    };
+  }
+
+  // Hide Modal
+  document.getElementById('cancelDelete').addEventListener('click', () => {
+    document.getElementById('confirmationModal').classList.add('hidden');
+  });
+</script>
+{% endblock %}

@@ -1,0 +1,175 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Talent HR System</title>
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+</head>
+<body class="bg-gray-100">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-center items-center h-16 gap-8">
+        <!-- Logo -->
+        <div class="flex-shrink-0">
+          <a href="/" class="text-2xl font-bold text-blue-600">TalentHub</a>
+        </div>
+        <!-- Links -->
+        <div class="hidden md:flex space-x-6">
+          {% if user.is_authenticated %}
+          
+          {% if user.last_name == "manager" or user.last_name == "HR" %}
+          <a href="{% url 'main:dashboard' %}" class="text-gray-700 hover:text-blue-600 font-medium">Dashboard</a>
+          {% endif %}
+
+          <a href="{% url 'main:emp_profile' pk=user.id %}" class="text-gray-700 hover:text-blue-600 font-medium">Profile</a>
+          <a href="{% url 'main:job_list' %}" class="text-gray-700 hover:text-blue-600 font-medium">Jobs</a>
+          <a href="{% url 'goals:goal_list' %}" class="text-gray-700 hover:text-blue-600 font-medium">Goals</a>
+          
+          {% if user.last_name == "manager" or user.last_name == "HR" %}
+          <a href="{% url 'main:emp_list' %}" class="text-gray-700 hover:text-blue-600 font-medium">EmployeeAnalysis</a>
+          {% endif %}
+
+          
+
+          
+          {% if user.last_name == "employee" %}
+          
+          
+          <a href="{% url 'main:applied_jobs' %}" class="text-gray-700 hover:text-blue-600 font-medium">Applied Jobs</a>
+          
+          <a href="{% url 'main:emp_skillgap' pk=user.id %}" class="text-gray-700 hover:text-blue-600 font-medium">Skillgap</a>
+          
+          {% endif %}
+          <a href="{% url 'rewards:reward_list' %}" class="text-gray-700 hover:text-blue-600 font-medium">Rewards</a>
+          <a href="{% url 'main:commonfeedback_view' %}" class="text-gray-700 hover:text-blue-600 font-medium">Feedback</a>
+          <a href="{% url 'main:emp_training'%}" class="text-gray-700 hover:text-blue-600 font-medium">Trainings</a>
+       
+          
+          <a href="{% url 'main:feedback' %}" class="text-gray-700 hover:text-blue-600 font-medium">Performance Review</a>
+
+          {% if user.last_name == "manager" or user.last_name == "HR" %} 
+          <a href="{% url 'main:analytics' %}" class="text-gray-700 hover:text-blue-600 font-medium">Analytics</a>
+          <a href="{% url 'main:talent' %}" class="text-gray-700 hover:text-blue-600 font-medium">Talent Pool</a>
+          {% endif %}
+
+         
+
+
+          {% endif %}
+          
+        
+        </div>
+        <!-- Profile Section -->
+        <div class="ml-4 relative flex flex-row">
+          <button class="flex items-center text-gray-600 hover:text-blue-600 focus:outline-none">
+          <a href="{% url 'main:emp_profile' pk=user.id %}">
+            <span class="ml-2 hidden md:block font-medium">{{user.username}}</span>
+          </a>
+          </button>
+          <button class="flex items-center text-gray-600 hover:text-blue-600 focus:outline-none">
+            <a href="/accounts/logout">
+              <span class="ml-2 hidden md:block font-medium">Logout</span>
+            </a>
+            </button>
+        </div>
+        <!-- Hamburger Menu -->
+        <div class="flex md:hidden">
+          <button id="mobile-menu-btn" class="text-gray-600 hover:text-blue-600 focus:outline-none">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16m-7 6h7"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden">
+      <div class="px-2 pt-2 pb-3 space-y-1">
+        {% if user.is_authenticated %}
+          
+          {% if user.last_name == "manager" or user.last_name == "HR" %}
+          <a href="{% url 'main:dashboard' %}" class="text-gray-700 hover:text-blue-600 font-medium">Dashboard</a>
+          {% endif %}
+
+          <a href="{% url 'main:emp_profile' pk=user.id %}" class="text-gray-700 hover:text-blue-600 font-medium">Profile</a>
+          
+          {% if user.last_name == "manager" %}
+          <a href="{% url 'main:emp_list' %}" class="text-gray-700 hover:text-blue-600 font-medium">EmployeeList</a>
+          {% endif %}
+
+          
+          {% if user.last_name == "employee" %}
+          <a href="{% url 'main:emp_skillgap' pk=user.id %}" class="text-gray-700 hover:text-blue-600 font-medium">Skillgap</a>
+          <a href="{% url 'main:job_list' %}" class="text-gray-700 hover:text-blue-600 font-medium">Jobs</a>
+          <a href="{% url 'main:applied_jobs' %}" class="text-gray-700 hover:text-blue-600 font-medium">Applied Jobs</a>
+          
+          {% endif %}
+
+          
+
+
+          <a href="{% url 'main:emp_training' %}" class="text-gray-700 hover:text-blue-600 font-medium">Trainings</a>
+          
+          <a href="{% url 'main:feedback' %}" class="text-gray-700 hover:text-blue-600 font-medium">Feedback</a>
+
+          {% if user.last_name == "manager" or user.last_name == "HR" %}
+          <a href="{% url 'main:analytics' %}" class="text-gray-700 hover:text-blue-600 font-medium">Analytics</a>
+          {% endif %}
+
+          <a href="{% url 'main:posts' %}" class="text-gray-700 hover:text-blue-600 font-medium">Posts</a>
+
+          {% if user.last_name == "manager" %}
+          <a href="{% url 'main:succession' %}" class="text-gray-700 hover:text-blue-600 font-medium">Succession</a>
+          {% endif %}
+
+          {% if user.last_name == "manager" %}
+          <a href="{% url 'main:promotion' %}" class="text-gray-700 hover:text-blue-600 font-medium">Promotion</a>
+          {% endif %}
+
+          {% if user.last_name == "HR" %}
+          <a href="{% url 'main:reports' %}" class="text-gray-700 hover:text-blue-600 font-medium">Reports</a>
+          {% endif %}
+
+
+          {% endif %}
+
+
+      </div>
+    </div>
+  </nav>
+
+  {% block content %}
+  {% endblock %}
+
+
+
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-center">&copy; 2025 TalentHub. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
+

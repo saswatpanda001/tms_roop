@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg mt-6">
+    <h2 class="text-3xl font-semibold text-center mb-6">Edit Profile</h2>
+
+    <form method="POST" enctype="multipart/form-data" class="space-y-6">
+      {% csrf_token %}
+
+   
+      <div class="flex flex-col space-y-2">
+        <label for="id_skills" class="font-medium text-lg">Skills</label>
+        <div class="max-h-60 overflow-y-auto">
+            {{ form.skills }}
+        </div>
+    </div>
+
+    <div class="flex flex-col space-y-2">
+      <label for="id_skill_gao" class="font-medium text-lg">Skills Gap</label>
+      <div class="max-h-60 overflow-y-auto">
+          {{ form.skill_gap }}
+      </div>
+  </div>
+      <!-- Certifications (Many-to-Many) -->
+      <div class="flex flex-col space-y-2">
+        <label for="id_certifications" class="font-medium text-lg">Certifications</label>
+        {{ form.certifications }}
+      </div>
+
+      <!-- Achievements (Many-to-Many) -->
+      <div class="flex flex-col space-y-2">
+        <label for="id_achievements" class="font-medium text-lg">Achievements</label>
+        {{ form.achievements }}
+      </div>
+
+      <!-- Trainings (Many-to-Many) -->
+      <div class="flex flex-col space-y-2">
+        <label for="id_trainings" class="font-medium text-lg">Trainings</label>
+        <div class="max-h-60 overflow-y-auto">
+        {{ form.trainings }}
+        </div>
+      </div>
+
+      <div class="flex flex-col space-y-2">
+        <label for="id_position" class="font-medium text-lg">Position</label>
+            {{ form.position }}
+        </div>
+
+
+     
+      <div class="flex flex-col space-y-2">
+        <label for="id_development_plans" class="font-medium text-lg">Development Plans</label>
+        <div class="max-h-60 overflow-y-auto">
+            {{ form.development_plans }}
+        </div>
+    </div>
+
+
+      <!-- Submit Button -->
+      <div class="flex justify-end mt-4">
+        <button type="submit" class="bg-blue-500 text-white py-2 px-6 rounded-md hover:bg-blue-700 transition duration-300">
+          Save Changes
+        </button>
+      </div>
+    </form>
+  </div>
+{% endblock %}

@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landing Page</title>
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  <script src="https://cdn.tailwindcss.com"></script> 
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Header -->
+  <header class="bg-white shadow-md">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="#" class="text-2xl font-bold text-blue-600">Talent Management System</a>
+      <nav class="space-x-4">
+        <a href="#features" class="text-gray-600 hover:text-blue-600">Features</a>
+        <a href="#about" class="text-gray-600 hover:text-blue-600">About</a>
+        <a href="#contact" class="text-gray-600 hover:text-blue-600">Contact</a>
+        <a href="{% url 'users:login_dashboard' %}" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Login</a>
+        <a href="/accounts/signup" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Signup</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="bg-blue-600 text-white py-20">
+    <div class="container mx-auto px-6 text-center">
+      <h1 class="text-4xl md:text-6xl font-bold mb-4">Simplify Workforce Management</h1>
+      <p class="text-lg md:text-xl mb-6">
+        Manage employees, track performance, and grow talent with ease.
+      </p>
+      <a href="/signup" class="bg-white text-blue-600 px-6 py-3 rounded font-medium shadow hover:bg-gray-100">Get Started</a>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="py-16">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl font-bold text-center mb-12">Features</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white shadow-lg rounded-lg p-6">
+          <h3 class="text-xl font-semibold mb-2">User Management</h3>
+          <p class="text-gray-600">Role-based authentication for employees, managers, and administrators.</p>
+        </div>
+        <div class="bg-white shadow-lg rounded-lg p-6">
+          <h3 class="text-xl font-semibold mb-2">Talent Identification</h3>
+          <p class="text-gray-600">Analyze performance and achievements to identify top talent.</p>
+        </div>
+        <div class="bg-white shadow-lg rounded-lg p-6">
+          <h3 class="text-xl font-semibold mb-2">Analytics Dashboard</h3>
+          <p class="text-gray-600">Track employee metrics, project progress, and organizational health.</p>
+        </div>
+        <div class="bg-white shadow-lg rounded-lg p-6">
+          <h3 class="text-xl font-semibold mb-2">Training & Development</h3>
+          <p class="text-gray-600">Recommend training programs and track certification progress.</p>
+        </div>
+        <div class="bg-white shadow-lg rounded-lg p-6">
+          <h3 class="text-xl font-semibold mb-2">Feedback System</h3>
+          <p class="text-gray-600">Gather user suggestions to continuously improve the platform.</p>
+        </div>
+        <div class="bg-white shadow-lg rounded-lg p-6">
+          <h3 class="text-xl font-semibold mb-2">Notifications & Alerts</h3>
+          <p class="text-gray-600">Stay informed about promotions, accomplishments, and more.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="bg-gray-100 py-16">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold mb-4">About Us</h2>
+      <p class="text-gray-600 max-w-3xl mx-auto">
+        Our system streamlines workforce management by integrating user-friendly features for employees and administrators. From managing employee data to promoting skill development, we aim to enhance productivity and talent growth within organizations.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-16">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold mb-4">Contact Us</h2>
+      <p class="text-gray-600 mb-6">Have questions or feedback? We'd love to hear from you!</p>
+      <a href="mailto:info@myproject.com" class="text-blue-600 font-medium hover:underline">info@myproject.com</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-6">
+    <div class="container mx-auto px-6 text-center">
+      <p>&copy; 2025 MyProject. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
